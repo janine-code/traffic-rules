@@ -5,57 +5,57 @@ var taxiPositionCounter = 1;
 
 body.onkeydown = function(e) {
 
-    //right arrow : 39//
-    //left arrow  : 37
-    //up arrow    : 38
-    //down arrow  : 40
-    if (e.keyCode === 39) {
+  //right arrow : 39//
+  //left arrow  : 37
+  //up arrow    : 38
+  //down arrow  : 40
+  var tl = new TrafficLight(taxiPositionCounter);
 
-      var blah = calculateTaxiLocation(taxiPositionCounter);
-      taxiPositionCounter++;
-      var blah2 = calculateTaxiLocation(taxiPositionCounter);
-      moveTaxi(blah, blah2);
+  if (e.keyCode === 38) {
+    tl.red();
+  }
 
-    }
-    if (e.keyCode === 37) {
+  if (e.keyCode === 40) {
+    tl.green();
+    displayMessage("green");
+  }
 
-      var blah = calculateTaxiLocation(taxiPositionCounter);
-      taxiPositionCounter--;
-      var blah2 = calculateTaxiLocation(taxiPositionCounter);
-      moveTaxi(blah, blah2);
+var currentState = tl.state();
 
-    }
-    displayMessage(e.keyCode);
+if (e.keyCode === 39) {if(currentState === "red"){}
+else{
+          var position = calculateTaxiLocation(taxiPositionCounter);
+          taxiPositionCounter++;
+          var nextPosition = calculateTaxiLocation(taxiPositionCounter);
+          moveTaxi(position, nextPosition);}
 
-
-
-    //alert(taxiPositionCounter);
-    // to move the taxi forward...
-    // when the right arrow is pressed
-    //work with `taxiPositionCounter`
-
-    // call `calculateTaxiLocation` to get a taxi location className store it in a variable.
-    // increment the `taxiPositionCounter`
-    // call `calculateTaxiLocation` to the new a taxi location className store it in another variable.
-
-    //pass both to the `moveTaxi( firstClassName, secondClassName)` function
-    //
-    var tl = new TrafficLight(taxiPositionCounter);
+}
+  if (e.keyCode === 37) {
 
 
+    var position = calculateTaxiLocation(taxiPositionCounter);
+    taxiPositionCounter--;
+    var nextPosition = calculateTaxiLocation(taxiPositionCounter);
+    moveTaxi(position, nextPosition);
 
-          if (e.keyCode === 38) {
-        tl.red();
-      }
-      else if (e.keyCode === 40) {
-        tl.green();
-        displayMessage("green");
-      }
-      else{tl.orange();}
+  }
 
-      if (tl.state() === "green") {
-      moveTaxi(blah,blah2);}
-  else if (tl.state()==="red"){taxiPositionCounter=moveTaxi(blah,blah);}
-  else{moveTaxi(blah,blah2)}
+  displayMessage(e.keyCode);
+
+
+
+  //alert(taxiPositionCounter);
+  // to move the taxi forward...
+  // when the right arrow is pressed
+  //work with `taxiPositionCounter`
+
+  // call `calculateTaxiLocation` to get a taxi location className store it in a variable.
+  // increment the `taxiPositionCounter`
+  // call `calculateTaxiLocation` to the new a taxi location className store it in another variable.
+
+  //pass both to the `moveTaxi( firstClassName, secondClassName)` function
+  //
+
+
 
 }
